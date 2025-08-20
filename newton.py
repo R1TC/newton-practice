@@ -12,12 +12,12 @@ def f_x(x):
     f(x) : numerical value
         Numerical value of the function evaluated at the input parameter x
     """
-    result = x**2 - 2 * x + 1
+    result = x**4/(4-x**3-x)
     return result
 
 
 # Approximate first derivative
-def D1_x(x, epsilon=0.001):
+def D1_x(x, epsilon=1e-4):
     """
     Approximation of the first derivative of the function defined in f_x,
     f'(x)=f(x+epsilon)-f(x)/epsilon
@@ -38,7 +38,7 @@ def D1_x(x, epsilon=0.001):
 
 
 # Approximate second derivative
-def D2_x(x, epsilon=0.001):
+def D2_x(x, epsilon=1e-4):
     """
     Approximation of the second derivative of the function defined in f_x,
     f''(x)=f'(x+epsilon)-f'(x)/epsilon
@@ -59,7 +59,7 @@ def D2_x(x, epsilon=0.001):
 
 
 # Newton method : tol= Newton method tolerance, epsilon: derivative approximation epsilon
-def N_M(x_0, tol, epsilon):
+def N_M(x_0, tol=1e-5, epsilon=1e-4, max_it=1e5):
     """
     Newton's method to obtain the root of the function defined in f_x
 
@@ -71,6 +71,8 @@ def N_M(x_0, tol, epsilon):
         threshold value at which the iteration will stop
     epsilon: numerical value
         increment used to compute the derivative
+    max_it: numerical value
+        Maximum number of iteration of the method
 
 
     Returns
@@ -85,9 +87,10 @@ def N_M(x_0, tol, epsilon):
         x_t = x_t_1 - (D1_x(x_t_1, epsilon)) / (D2_x(x_t_1, epsilon))
         difference = abs(x_t - x_t_1)
         count += 1
-        if count == 100:
+        if count == max_it:
             print("Loop finished after break.")
             break
     else:
         print("Loop finished normally.")
     return x_t
+
