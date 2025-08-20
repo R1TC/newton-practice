@@ -59,7 +59,7 @@ def D2_x(x, epsilon=1e-4):
 
 
 # Newton method : tol= Newton method tolerance, epsilon: derivative approximation epsilon
-def N_M(x_0, tol=1e-5, epsilon=1e-4, max_it=1e5):
+def N_M(x_0, tol=1e-5, epsilon=1e-4, max_it=1e3):
     """
     Newton's method to obtain the root of the function defined in f_x
 
@@ -86,6 +86,7 @@ def N_M(x_0, tol=1e-5, epsilon=1e-4, max_it=1e5):
     while difference > tol:
         x_t = x_t_1 - (D1_x(x_t_1, epsilon)) / (D2_x(x_t_1, epsilon))
         difference = abs(x_t - x_t_1)
+        x_t_1 = x_t
         count += 1
         if count == max_it:
             print("Loop finished after break.")
