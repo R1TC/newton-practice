@@ -91,6 +91,3 @@ def N_M(x_0, tol, epsilon):
     else:
         print("Loop finished normally.")
     return x_t
-
-
-N_M(2, 0.1, 0.1)
